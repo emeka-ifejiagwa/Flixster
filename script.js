@@ -74,3 +74,29 @@ let movies = {
 }
 
 const firstMovie = movies["results"][0]
+
+function generateCards(movie){
+    // create star
+    let star = document.createElement("span")
+    star.classList.add("star")
+    const starContent = document.createTextNode("⭐️");
+    star.appendChild(starContent);
+
+    let rating = document.createElement("span")
+    rating.classList.add("star")
+    const ratingContent = document.createTextNode(firstMovie.vote_average);
+    rating.appendChild(ratingContent);
+
+    //create average container
+    let avgContainer = document.createElement("div")
+    avgContainer.classList.add("star")
+    avgContainer.appendChild(star);
+    avgContainer.appendChild(rating);
+    document.body.appendChild(avgContainer)
+
+    let img = document.createElement("img")
+    img.src = "https://image.tmdb.org/t/p/w342" + firstMovie.poster_path
+    document.body.insertBefore(img, avgContainer)
+}
+
+generateCards(firstMovie)
