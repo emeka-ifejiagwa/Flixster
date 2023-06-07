@@ -73,3 +73,4 @@ let movies = {
     "total_results": 1951
 }
 
+const firstMovie = movies["results"][0]
