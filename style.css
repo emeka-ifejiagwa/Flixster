@@ -1,1 +1,35 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+#header{
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    font-size:18px;
+    padding: 0px;
+}
+
+body{
+    background-color: black;
+    color: #c6c6c6;
+    margin-top: 2.5%;
+}
+
+#header{
+    margin-bottom: 2.5%;
+    background-color: #222222;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#logo{
+    display: inline-block;
+    width: 24px;
+    height: 32px;
+}
+
+#app-name{
+    display: inline-block;
+    font-size: 30px;
+}

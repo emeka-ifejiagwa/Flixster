@@ -75,7 +75,7 @@ let movies = {
 
 const firstMovie = movies["results"][0]
 
-function generateCards(movie){
+function generateCards(firstMovie){
     // create star
     let star = document.createElement("span")
     star.classList.add("star")
@@ -92,11 +92,22 @@ function generateCards(movie){
     avgContainer.classList.add("star")
     avgContainer.appendChild(star);
     avgContainer.appendChild(rating);
-    document.body.appendChild(avgContainer)
+    // document.body.appendChild(avgContainer)
 
     let img = document.createElement("img")
     img.src = "https://image.tmdb.org/t/p/w342" + firstMovie.poster_path
-    document.body.insertBefore(img, avgContainer)
+    // document.body.insertBefore(img, avgContainer)
+
+    let name = document.createElement("div")
+    name.classList.add("name")
+    name.innerText = firstMovie.original_title
+
+    let movie = document.createElement("section")
+    movie.classList.add("movie")
+    movie.appendChild(img)
+    movie.appendChild(avgContainer)
+    movie.appendChild(name)
+    document.body.appendChild(movie)
 }
 
 generateCards(firstMovie)
