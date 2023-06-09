@@ -14,24 +14,16 @@
     </header>
 
     <section id="page">
-        <form id="search-form" onsubmit="return false">
+        <form id="search-form">
             <label for="search"></label>
             <input id="search-input" type="text" name="search" placeholder="Type your search...">
             <button id="search-button" type="submit">SEARCH</button>
         </form>
-        <h4 style="font-size: 20px; text-align: left; margin: 2.5%;">Now Playing</h4>
-        <section id="movies-grid">
-            
+        <h4 id="result-mode" style="font-size: 20px; text-align: left; margin: 2.5%; margin-bottom: 1.25%;">Now Playing</h4>
+        <section id="movies-grid" class="grid">
         </section>
+        <button id="load-more-movies-btn">LOAD MORE</button>
     </section>
-    <!-- <section class="movie">
-        <img src="/">
-        <div class="average">
-            <span class="star">⭐️</span>
-            <span class="rating"></span>
-        </div>
-        <div class="name"></div>
-    </section> -->
 </body>
 <script type='text/javascript' src="config.js"></script> 
 <script type='text/javascript' src="script.js"></script> 
