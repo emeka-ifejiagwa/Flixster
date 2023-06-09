@@ -1,6 +1,6 @@
 ## Week 1 Assignment: Flixster
 
-Submitted by: **NAME**
+Submitted by: **Chukwuemeka Ifejiagwa**
 
 Estimated time spent: **#** hours spent in total
 
