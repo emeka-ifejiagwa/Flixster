@@ -1,5 +1,6 @@
 :root{
     --bgColor: #242424;
+    --btnBgColor: rgb(252, 90, 90);
 }
 
 *{
@@ -35,8 +36,9 @@ body{
 
 #logo{
     display: inline-block;
-    width: 24px;
-    height: 32px;
+    width: 32px;
+    height: auto;
+    object-fit: contain;
 }
 
 #app-name{
@@ -78,9 +80,9 @@ body{
 #search-button{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    height: 106%;
+    height: 4.38vh;
     width: 10%;
-    background-color: rgb(252, 90, 90);
+    background-color: var(--btnBgColor);
     cursor: pointer;
     transition: background-color .5s ease;
 }
@@ -92,18 +94,22 @@ body{
 #movies-grid{
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.grid{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
 .movie-card{
     display: flex;
     flex-direction: column;
-    height: 50vh;
     width: 200px;
     align-items: flex-start;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
     margin-top: 1.25%;
     margin-bottom: 1.25%;
 }
@@ -112,6 +118,7 @@ body{
 .movie-poster{
     height: auto;
     width: 200px;
+    min-height: 300px;
     cursor: pointer;
 }
 
@@ -128,4 +135,19 @@ body{
 .movie-votes{
     margin: 0px;
     font-size: 14px;
+}
+
+#load-more-movies-btn{
+    margin-top: 1.25%;
+    margin-bottom: 2.5%;
+    background-color: var(--btnBgColor);
+    width: 30%;
+    height: 4.35vh;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .5s ease;
+}
+
+#load-more-movies-btn:hover{
+    background-color: rgb(253, 133, 133);
 }
