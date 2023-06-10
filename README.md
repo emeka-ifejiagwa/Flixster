@@ -39,6 +39,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [ ] Implement anything else that you can get done to improve the app functionality!
 
 ### Walkthrough Video
+May take a few seconds to load
 <img style="width:auto; height: 400px;" src="assets/demo.gif">
 
 ### Reflection
