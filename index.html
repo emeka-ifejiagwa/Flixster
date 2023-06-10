@@ -14,12 +14,14 @@
     </header>
 
     <section id="page">
-        <form id="search-form">
-            <label for="search"></label>
-            <input id="search-input" type="text" name="search" placeholder="Type your search...">
-            <button id="search-button" type="submit">SEARCH</button>
-        </form>
-        <h4 id="result-mode" style="font-size: 20px; text-align: left; margin: 2.5%; margin-bottom: 1.25%;">Now Playing</h4>
+        <header id="now-playing-header" class="grid-header">
+            <form id="search-form">
+                <label for="search"></label>
+                <input id="search-input" type="text" name="search" placeholder="Type your search...">
+                <button id="search-button" type="submit">SEARCH</button>
+            </form>
+            <h4 id="now-playing" class="result-mode">Now Playing</h4>
+        </header>
         <section id="movies-grid" class="grid">
         </section>
         <button id="load-more-movies-btn">LOAD MORE</button>

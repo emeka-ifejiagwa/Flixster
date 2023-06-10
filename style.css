@@ -14,7 +14,7 @@ button, input{
 #header, #page{
     margin-left: 2.5%;
     margin-right: 2.5%;
-    font-size:20px;
+    font-size:24px;
     padding: 0px;
 }
 
@@ -23,13 +23,12 @@ body{
     color: #d7d7d7;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
-    height: max-content;
 }
 
 #header{
     margin-bottom: 2.5%;
     background-color: var(--bgColor);
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     vertical-align: middle;
 }
@@ -48,17 +47,33 @@ body{
 
 #page{
     background-color: var(--bgColor);
-    border-radius: 5px;
-    height: auto;
-    padding-top: 2.5%;
+    border-radius: 10px;
     text-align: center;
+    overflow: scroll;
+    position: fixed;
+    width: 93.5%;;
+}
+
+.grid-header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: var(--bgColor);
+    vertical-align: center;
+    border-radius: 10px;
+}
+
+#now-playing-header{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
 }
 
 #search-form{
-    min-width: 8%;
+    min-width: max-content;
     width: auto;
     height: 4vh;
     margin-bottom: 2.5%;
+    max-height: 32px;
 }
 
 #search-input{
@@ -67,6 +82,7 @@ body{
     background-color: #d7d7d7;
     height: 100%;
     width: 25%;
+    min-width: max-content;
     text-align: center;
     outline: none;
 }
@@ -81,9 +97,11 @@ body{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     height: 4.38vh;
+    max-height: 35.5px;
     width: 10%;
     background-color: var(--btnBgColor);
     cursor: pointer;
+    min-width: max-content;
     transition: background-color .5s ease;
 }
 
@@ -91,11 +109,23 @@ body{
     background-color: rgb(253, 133, 133);
 }
 
+.result-mode{
+    font-size: 20px; 
+    text-align: center; 
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-bottom: 0px;
+}
+
 #movies-grid{
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    position: relative;
+    top: 0;
+    z-index: -1; /* sends this to the back*/
 }
 
 .grid{
@@ -120,6 +150,12 @@ body{
     width: 200px;
     min-height: 300px;
     cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.movie-poster:hover{
+    transform: scale(1.1);
 }
 
 .movie-title{
@@ -142,12 +178,63 @@ body{
     margin-bottom: 2.5%;
     background-color: var(--btnBgColor);
     width: 30%;
+    min-width: max-content;
     height: 4.35vh;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    max-height: 35.5px;
     transition: background-color .5s ease;
 }
 
 #load-more-movies-btn:hover{
     background-color: rgb(253, 133, 133);
+}
+
+#search-header{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    max-height: fit-content;
+}
+
+#search-grid{
+    position: relative;
+    top: 0;
+    z-index: -1; /* sends this to the back*/
+}
+
+#search-header-text{
+    text-align: center;
+    
+}
+
+#close-search-btn{
+    background-color: #d7d7d7;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+}
+
+#close-search-btn:hover{
+    background-color: var(--btnBgColor)
+}
+
+#no-movie-found-view{
+    width: 93.5vw;
+}
+
+#sad-face{
+    font-size: 200px;
+    line-height: 100%;
+    text-align: center;
+    margin: 0;
+    opacity: 70%;
+}
+#no-movie-text{
+    text-align: center;
+    margin: 5%;
+    font-size: 24px;
+    font-weight: lighter;
+    opacity: 70%;
 }
