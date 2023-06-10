@@ -10,6 +10,7 @@ let pageNo = 0
 let searchPageNo = 0
 let inSearch = false // used to switch urls to display content for either search or now playing
 let currSearch = ""
+let movieList = {} // this would map each movie id to the name to help retrieve the pop up info
 
 const getURL = () => `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${++pageNo}`
 const getSearchURL = (movieName) => `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=${++searchPageNo}`
@@ -27,7 +28,7 @@ function generateCards(movie, grid){
     poster.src = "https://image.tmdb.org/t/p/w342" +  movie.poster_path
     poster.classList.add("movie-poster")
     poster.alt = `${movie.title} poster`
-    // poster.setAttribute()
+    poster.setAttribute("movie-id", movie.id)
     // incase the poster is not available
     poster.addEventListener("error", () => {
         poster.src = "assets/logo.png"
@@ -38,11 +39,13 @@ function generateCards(movie, grid){
     const title = document.createElement("p")
     title.classList.add("movie-title")
     title.innerText = movie.title
+    title.setAttribute("movie-id", movie.id)
 
     // create votes element
     const movieVotes = document.createElement("p")
     movieVotes.classList.add("movie-votes")
     movieVotes.innerText = `⭐️ ${movie.vote_average}`
+    movieVotes.setAttribute("movie-id", movie.id)
 
     const movieCard = document.createElement("div")
     movieCard.classList.add("movie-card")
@@ -52,7 +55,52 @@ function generateCards(movie, grid){
     grid.appendChild(movieCard)
 
     movieCard.onclick = ((e) => {
-        console.log(e.target)
+        // only here till we can clear popUP
+        const oldPopUp = document.querySelector("#pop-up")
+        oldPopUp === null ? undefined: oldPopUp.remove()
+        const clickedMovie = movieList[e.target.getAttribute("movie-id")]
+        const blurryContainer = document.createElement("section")
+        blurryContainer.id = "blurry-container"
+
+        const popUpImage = document.createElement("img")
+        popUpImage.id = "pop-up-image"
+        popUpImage.src = "https://image.tmdb.org/t/p/w342" + clickedMovie.poster_path
+ 
+        const popUpText = document.createElement("div")
+        popUpText.id = "pop-up-Text"
+
+        const popUpTitle = document.createElement("h4")
+        popUpTitle.id = "pop-up-title"
+        popUpTitle.innerText = `Title: ${clickedMovie.title}`
+
+        const popUpOverview = document.createElement("p")
+        popUpOverview.id = "pop-up-overview"
+        popUpOverview.innerText = `Summary: ${clickedMovie.overview}`
+
+
+        popUpText.appendChild(popUpTitle)
+        popUpText.appendChild(popUpOverview)
+
+        const popUpCard = document.createElement("section")
+        popUpCard.id = "pop-up-card"
+        popUpCard.appendChild(popUpImage)
+        popUpCard.appendChild(popUpText)
+
+        const popUpCancel = document.createElement("button")
+        popUpCancel.id = "pop-up-cancel-btn"
+        popUpCancel.innerText = "\u2715"
+        popUpCard.appendChild(popUpCancel)
+
+        const popUp = document.createElement("section")
+        popUp.id = "pop-up"
+        popUp.appendChild(popUpCard)
+        blurryContainer.appendChild(popUp)
+        document.querySelector("#page").appendChild(blurryContainer)
+
+        popUpCancel.onclick = (e) => {
+            popUp.remove()
+            blurryContainer.remove()
+        }
     })
 }
 
@@ -60,7 +108,6 @@ function displayMovies(moviesPromise, grid){
     moviesPromise.then(response => {
         const movies = response.results
 
-        console.log(movies.length)
         // empty movie screen
         if(movies.length <= 0){
             const sadFace = document.createElement("h1")
@@ -78,6 +125,9 @@ function displayMovies(moviesPromise, grid){
             document.querySelector("#page").appendChild(noMovieFoundView)
         }
         
+        // compile the list of all the movies seen so far
+        movies.forEach(movie => {movieList[movie.id] = movie})
+
          // if we reach the end of the movie list, remove the load more button
         if(pageNo >= response.total_pages || searchPageNo >= response.total_pages){
             document.querySelector("#load-more-movies-btn").display = "none"
@@ -163,5 +213,4 @@ searchForm.addEventListener("submit", (event) => {
 
 // this helps to keep the search/cancel button in sight at all times
 const gridHeader = document.querySelector("#page");
-gridHeader.style.height = `calc(100vh - ${document.querySelector("#header").clientHeight}px - 10vh)`
-console.log(gridHeader.clientHeight)
+gridHeader.style.height = `81.7vh`
